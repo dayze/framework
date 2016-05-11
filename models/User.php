@@ -2,55 +2,90 @@
 
 class User
 {
-    public $id;
-    public $login;
-    public $password;
-    public $name;
-    public $lastName;
-    
-    public function createUser($login, $password, $lastName, $name){
-        try{
-            return User_DAO::saveUser($login, $password, $lastName, $name, $type,$id_team);
-        }
-        catch(Exception $e){
-            throw new Exception($e);
-        }
-    }
+    private $login;
+    private $password;
+    private $mail;
+    private $name;
+    private $lastName;
 
-    public function connection($login, $password)
+    /**
+     * @return mixed
+     */
+    public function getLogin()
     {
-        try{
-           return User_DAO::read($login, $password);
-        }
-        catch(Exception $e){
-            throw new Exception($e);
-        }
+        return $this->login;
     }
 
-    public function getAlluser()
+    /**
+     * @param mixed $login
+     */
+    public function setLogin($login)
     {
-        try {
-            return User_DAO::readAll();
-        } catch (Exception $e) {
-            throw new Exception($e);
-        }
+        $this->login = $login;
     }
 
-    public function readUserByTeam($idTeam){
-        try {
-            return User_DAO::loadUserByTeam($idTeam);
-        } catch (Exception $e) {
-            throw new Exception($e);
-        }
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
     }
 
-    public function readTasksFromUser($id_proj){ //n
-        try {
-            $this->tasks =  Task_DAO::loadTaskFromUser($this->id, $id_proj);
-        } catch (Exception $e) {
-            throw new Exception($e);
-        }
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getMail()
+    {
+        return $this->mail;
+    }
+
+    /**
+     * @param mixed $mail
+     */
+    public function setMail($mail)
+    {
+        $this->mail = $mail;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param mixed $lastName
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+    }
 
 }

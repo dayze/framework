@@ -3,7 +3,6 @@
 class Db
 {
     private $instance;
-
     public function __construct()
     {
         try {
@@ -12,7 +11,11 @@ class Db
             throw new PDOException($e->getMessage());
         }
     }
-
+    
+    public function getInstance(){
+        return $this->instance;
+    }
+    
     public function __destruct()
     {
         $this->instance = null;

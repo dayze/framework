@@ -15,7 +15,7 @@ try {
     include($controller);
 
 } catch (Exception $e) {
-    var_dump($e->getMessage()); // Pour d�bugguer seulement
+    var_dump($e->getMessage()); // Only debug
 }
 
 if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
