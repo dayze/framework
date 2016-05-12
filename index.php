@@ -1,5 +1,4 @@
 <?php
-include_once('config/conf_twig.php');
 include_once('config/config_app.php');
 
 $c = "";

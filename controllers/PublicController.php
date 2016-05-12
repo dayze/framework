@@ -5,6 +5,10 @@ de recevoir le r�sultat puis de le transmettre � la vue. */
 
 switch ($action) {
 
+    case 'home':
+        echo 'home';
+        break;
+
     case 'connection':
         $login = $_POST['login'];
         $password = $_POST['password'];
