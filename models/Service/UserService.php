@@ -2,11 +2,12 @@
 
 class UserService
 {
-    private $em;
+
+    private $userRepository;
 
     public function __construct()
     {
-        $this->em = GetEntityManager();
+        $this->userRepository = new UserRepository();
     }
 
     /*******************************
@@ -15,15 +16,7 @@ class UserService
 
     public function create($login, $password, $name, $lastName, $email)
     {
-        $user = new User();
-        $user->setLogin($login);
-        $user->setPassword($password);
-        $user->setName($name);
-        $user->setLastName($lastName);
-        $user->setEmail($email);
-        $this->em->persist($user);
-        $this->em->flush();
-        $this->em->close();
+        return $this->userRepository->save($login, $password, $name, $lastName, $email);
     }
 
     /*******************************
@@ -47,6 +40,15 @@ class UserService
             $this->setSession($user[0]);
         }
         return true;
+    }
+
+    public function returnAll()
+    {
+        $qb = $this->em->getRepository('User');
+        $users = $qb->findAll();
+        foreach ($users as $user) {
+            echo $user->getEmail();
+        }
     }
 
     private function setSession(User $user)

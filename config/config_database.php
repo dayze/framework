@@ -2,7 +2,7 @@
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
-function GetEntityManager(){
+function getEntityManager(){
     $paths = array(ENTITY_PATH);
     $isDevMode = false;
     
