@@ -4,5 +4,4 @@ switch ($action) {
         session_destroy();
         header('Location: index.php');
         break;
-
 }

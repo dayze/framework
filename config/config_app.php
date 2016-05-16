@@ -1,17 +1,11 @@
 <?php
 
-include_once("config_database.php");
-include_once("config_twig.php");
-//Constante
-DEFINE("ENTITY_PATH", "models");
+//CONSTANT PATH
+DEFINE("ENTITY_PATH", "models/Entity");
+DEFINE("VENDOR", "vendor/");
+DEFINE("MODELS", "models/");
 
-//BDD
-/*DEFINE('DB_NAME','');
-DEFINE('DB_LOGIN','');
-DEFINE('DB_PASSWORD','');
-DEFINE('DB_HOST','localhost');
-define("PDO_DSN","mysql:host=" . DB_HOST . ";dbname=" . DB_NAME);
-
-//Chargement de l'autoloader
-require 'autoloader.php';
-Autoloader::register();*/
+require("config_database.php");
+require("config_twig.php");
+require(VENDOR . "autoload.php");
+require('autoloader.php');

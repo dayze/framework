@@ -1,27 +1,64 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Dez
- * Date: 10/03/2016
- * Time: 07:43
- */
-//Cette classe permet de loader toutes nos classes quand on en a besoin, ça permet d'éviter les includes des classes
-class Autoloader{
-
+class Autoloader
+{
     /**
-     * Enregistre notre autoloader
+     * File extension as a string. Defaults to ".php".
      */
-    static function register(){
-        spl_autoload_register(array(__CLASS__, 'autoload'));
-    }
-
+    protected static $fileExt = '.php';
     /**
-     * Inclue le fichier correspondant à notre classe
-     * @param $class string Le nom de la classe à charger
+     * The top level directory where recursion will begin. Defaults to the current
+     * directory.
      */
-    static function autoload($class){
-        require MODELS . $class . '.php';
+    protected static $pathTop = MODELS;
+    /**
+     * A placeholder to hold the file iterator so that directory traversal is only
+     * performed once.
+     */
+    protected static $fileIterator = null;
+    /**
+     * Autoload function for registration with spl_autoload_register
+     *
+     * Looks recursively through project directory and loads class files based on
+     * filename match.
+     *
+     * @param string $className
+     */
+    public static function loader($className)
+    {
+        $directory = new RecursiveDirectoryIterator(static::$pathTop, RecursiveDirectoryIterator::SKIP_DOTS);
+        if (is_null(static::$fileIterator)) {
+            static::$fileIterator = new RecursiveIteratorIterator($directory, RecursiveIteratorIterator::LEAVES_ONLY);
+        }
+        $filename = $className . static::$fileExt;
+        foreach (static::$fileIterator as $file) {
+            if (strtolower($file->getFilename()) === strtolower($filename)) {
+                if ($file->isReadable()) {
+                    include_once $file->getPathname();
+                }
+                break;
+            }
+        }
     }
-
+    /**
+     * Sets the $fileExt property
+     *
+     * @param string $fileExt The file extension used for class files.  Default is "php".
+     */
+    public static function setFileExt($fileExt)
+    {
+        static::$fileExt = $fileExt;
+    }
+    /**
+     * Sets the $path property
+     *
+     * @param string $path The path representing the top level where recursion should
+     *                     begin. Defaults to the current directory.
+     */
+    public static function setPath($path)
+    {
+        static::$pathTop = $path;
+    }
 }
+Autoloader::setFileExt('.php');
+spl_autoload_register('Autoloader::loader');

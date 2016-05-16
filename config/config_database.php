@@ -5,8 +5,7 @@ use Doctrine\ORM\EntityManager;
 function GetEntityManager(){
     $paths = array(ENTITY_PATH);
     $isDevMode = false;
-
-// the connection configuration
+    
     $dbParams = array(
         'driver'   => 'pdo_mysql',
         'user'     => 'root',
