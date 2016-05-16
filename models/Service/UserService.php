@@ -51,7 +51,7 @@ class UserService
 
     private function setSession(User $user)
     {
-        
+        $_SESSION[USER_SESSION] = $user;
     }
 
 

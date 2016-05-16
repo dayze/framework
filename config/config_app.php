@@ -4,8 +4,13 @@
 DEFINE("ENTITY_PATH", "models/Entity");
 DEFINE("VENDOR", "vendor/");
 DEFINE("MODELS", "models/");
+DEFINE("USER_SESSION","user_session");
 
+//Require config files
+require('Autoloader.php');
+require(VENDOR . "autoload.php");
 require("config_database.php");
 require("config_twig.php");
-require(VENDOR . "autoload.php");
-require('autoloader.php');
+
+//Launch of Autoloader
+new Autoloader();

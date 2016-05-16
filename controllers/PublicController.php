@@ -10,17 +10,16 @@ switch ($action) {
         break;
 
     case 'connection':
-        $login = $_POST['login'];
-        $password = $_POST['password'];
-        $user = new User();
-        $varArray = $user->connection($login, $password);
-        if ($varArray) {
-            $_SESSION['user'] = $varArray[0];
-            $c = json_encode(array("data" => true));
-        } else {
-            $c = json_encode(array("data" => false));
+        $ajax = new Ajax();
+        $userSE = new UserService();
+        try{
+            $result = $userSE->checkPassword($_POST['login'], $_POST['password']);
+        }catch (Exception $e){
+            $ajax->isSuccess = false;
+            throw new Exception($e->getMessage());
         }
-
+        $ajax->data = $result;
+        $c = $ajax->toJSON();
         break;
 
     case 'inscription':
