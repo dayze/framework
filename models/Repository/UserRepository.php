@@ -13,7 +13,7 @@ class UserRepository
      * LSD
      ************************************/
 
-    public function load($byId = null, $byName = null)
+    public function load($byId = null, $byLogin,  $byName = null)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select('u')
@@ -22,6 +22,10 @@ class UserRepository
         if (!is_null($byId)) {
             $qb->andWhere('u.id = :id')
                 ->setParameter('id', $byId);
+        }
+        if (!is_null($byLogin)) {
+            $qb->andWhere('u.login = :login')
+                ->setParameter('login', $byLogin);
         }
         if (!is_null($byName)) {
             $qb->andWhere('u.name = :name')
@@ -89,7 +93,23 @@ class UserRepository
             throw new Exception($e->getMessage());
         }
         return true;
+    }
 
+    /************************************
+     * OTHER
+     ************************************/
+
+    public function checkUserLogin($login, $password)
+    {
+        $qb = $this->em->createQueryBuilder();
+        $qb->select('u')
+            ->from('User', 'u')
+            ->where('u.login = :login')
+            ->andWhere('u.password = :password')
+            ->setParameter('login', $login)
+            ->setParameter('password', $password)
+            ->setMaxResults(1)
+            ->getQuery()->getResult();
     }
 
 

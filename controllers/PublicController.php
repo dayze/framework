@@ -40,10 +40,5 @@ switch ($action) {
             'moteur_name' => 'Twig'
         ));
         break;
-
-    case 'debug':
-        $userSE = new UserService();
-        $res = $userSE->update(3, 'testLogin2', 'testPassword2', 'testName2', 'testLastName2', null);
-        var_dump($res);
 }
 

@@ -16,17 +16,17 @@ class UserService
 
     public function create($login, $password, $name, $lastName, $email)
     {
-        return $this->userRepository->save($login, $password, $name, $lastName, $email);
+        return $this->userRepository->save($login, $this->hashPassword($password), $name, $lastName, $email);
     }
 
-    public function read($byId = null, $byName = null)
+    public function read($byId = null, $byLogin = null, $byName = null)
     {
-        return $this->userRepository->load($byId, $byName);
+        return $this->userRepository->load($byId, $byLogin, $byName);
     }
 
     public function update($id, $login, $password, $name, $lastName, $email)
     {
-        return $this->userRepository->save($login, $password, $name , $lastName, $email, $id);
+        return $this->userRepository->save($login, $this->hashPassword($password), $name, $lastName, $email, $id);
     }
 
     public function delete($id)
@@ -35,36 +35,33 @@ class UserService
     }
 
     /*******************************
-     * Other
+     * OTHER
      *******************************/
 
     public function checkPassword($login, $password)
     {
-        /* $qb = $this->em->createQueryBuilder();
-         $user = $qb->select('u')
-             ->from('User', 'u')
-             ->where('u.login = :login')
-             ->andWhere('u.password = :password')
-             ->setParameter('login', $login)
-             ->setParameter('password', $password)
-             ->setMaxResults(1)
-             ->getQuery()->getResult();*/
+        $user = $this->read(null, $login);
         if (!$user) {
             return false;
         } else {
-            $this->setSession($user[0]);
+            $user = $user[0];
+            if ($this->verifyPassword($password, $user->getPassword())) {
+                $this->setSession($user);
+                return true;
+            } else
+                return false;
         }
-        return true;
     }
 
-    /*    public function returnAll()
-        {
-            $qb = $this->em->getRepository('User');
-            $users = $qb->findAll();
-            foreach ($users as $user) {
-                echo $user->getEmail();
-            }
-        }*/
+    private function hashPassword($password)
+    {
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    private function verifyPassword($password, $hash)
+    {
+        return password_verify($password, $hash);
+    }
 
     private function setSession(User $user)
     {
