@@ -24,12 +24,12 @@ switch ($action) {
 
     case 'inscription':
         $ajax = new Ajax();
-        $user = new User();
-        $team = new Team();
+        $userSE = new UserService();
         try {
-            $user->createUser($_POST['login'], $_POST['password'], $_POST['lastName'], $_POST['name']);
+            $userSE->create($_POST['login'], $_POST['password'],$_POST['name'] , $_POST['lastName'], $_POST['email']);
         } catch (Exception $e) {
-            $ajax->data = $e->getMessage();
+            $ajax->isSuccess = false;
+            throw new Exception($e->getMessage());
         }
         $c = $ajax->toJSON();
         break;
