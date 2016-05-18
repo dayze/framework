@@ -1,8 +1,4 @@
 <?php
-//PRINCIPE DU CONTROLLER
-/* Le controller doit contenir le minimum de code m�tier possible. Son r�le est d'appeller le bon mod�le et ses fonctions,
-de recevoir le r�sultat puis de le transmettre � la vue. */
-
 switch ($action) {
 
     case 'home':
