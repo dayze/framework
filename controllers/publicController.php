@@ -7,16 +7,17 @@ switch ($action) {
         break;
 
     case 'connection':
-        $ajax = new Ajax();
         $userSE = new UserService();
         try{
+            $_POST['login'] = 'dez';
+            $_POST['password'] = 'dez';
             $result = $userSE->checkPassword($_POST['login'], $_POST['password']);
         }catch (Exception $e){
-            $ajax->isSuccess = false;
             throw new Exception($e->getMessage());
         }
-        $ajax->data = $result;
-        $c = $ajax->toJSON();
+        if($result){
+            header("Location: index.php");
+        }
         break;
 
     case 'inscription':

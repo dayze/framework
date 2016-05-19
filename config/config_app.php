@@ -2,6 +2,7 @@
 
 //CONSTANT PATH
 DEFINE("APP_PATH", "/var/www/html/framework/");
+DEFINE("WEB_PATH", "localhost/framework/");
 DEFINE("MODELS_PATH", APP_PATH . "models/");
 DEFINE("ENTITY_PATH", MODELS_PATH . "Entity");
 DEFINE("VENDOR_PATH", APP_PATH .  "vendor/");

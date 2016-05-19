@@ -10,7 +10,7 @@ try {
     $action = isset($_GET["a"]) ? $_GET["a"] : "home";
     if (isset($_SESSION[USER_SESSION])) {
         $squelette = "views/layout.php";
-        $controller = "controllers/" . $_SESSION[USER_SESSION]->status . "Controller.php";
+        $controller = "controllers/" . $_SESSION[USER_SESSION]->getStatus() . "Controller.php";
     }
     include($controller);
 } catch (Exception $e) {
