@@ -22,7 +22,7 @@
 </head>
 
 <body>
-
+<?=$c?>
 </body>
 
 </html>

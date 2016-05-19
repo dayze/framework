@@ -2,7 +2,8 @@
 switch ($action) {
 
     case 'home':
-        echo 'home';
+        $template = $twig->loadTemplate('home.html.twig');
+        $c = $template->render(array());
         break;
 
     case 'connection':

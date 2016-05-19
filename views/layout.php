@@ -21,7 +21,7 @@
     </head>
 
     <body>
-    <?php echo $c; ?>
+    <?=$c?>
     </body>
 
     </html>
