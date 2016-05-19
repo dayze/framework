@@ -2,7 +2,7 @@
 
 Class Autoloader
 {
-    private $startDirectory = MODELS;
+    private $startDirectory = MODELS_PATH;
     private $fileIterator = null;
 
     public function __construct()
