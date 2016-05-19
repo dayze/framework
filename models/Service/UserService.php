@@ -14,9 +14,9 @@ class UserService
      * CRUD
      *******************************/
 
-    public function create($login, $password, $name, $lastName, $email)
+    public function create($login, $password, $name, $lastName, $email, $status)
     {
-        return $this->userRepository->save($login, $this->hashPassword($password), $name, $lastName, $email);
+        return $this->userRepository->save($login, $this->hashPassword($password), $name, $lastName, $email, $status);
     }
 
     public function read($byId = null, $byLogin = null, $byName = null)
@@ -24,9 +24,9 @@ class UserService
         return $this->userRepository->load($byId, $byLogin, $byName);
     }
 
-    public function update($id, $login, $password, $name, $lastName, $email)
+    public function update($id, $login, $password, $name, $lastName, $email, $status)
     {
-        return $this->userRepository->save($login, $this->hashPassword($password), $name, $lastName, $email, $id);
+        return $this->userRepository->save($login, $this->hashPassword($password), $name, $lastName, $email, $status, $id);
     }
 
     public function delete($id)

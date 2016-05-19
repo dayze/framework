@@ -5,6 +5,8 @@ DEFINE("ENTITY_PATH", "models/Entity");
 DEFINE("VENDOR", "vendor/");
 DEFINE("MODELS", "models/");
 DEFINE("USER_SESSION","user_session");
+DEFINE("USER", "user");
+DEFINE("ADMIN", "admin");
 
 //Require config files
 require('Autoloader.php');

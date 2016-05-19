@@ -35,8 +35,12 @@ class User
      */
     protected $password;
 
-    
-    
+    /**
+     * @Column(type="string")
+     */
+    protected $status;
+
+
     /*****************************
      * GETTERS AND SETTERS
      *****************************/
@@ -119,6 +123,22 @@ class User
     public function setPassword($password)
     {
         $this->password = $password;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param mixed $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
     }
 
 

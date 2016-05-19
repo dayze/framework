@@ -3,16 +3,16 @@ include_once('config/config_app.php');
 
 $c = "";
 $squelette = "views/public.php";
-$controller = "controllers/PublicController.php";
+$controller = "controllers/publicController.php";
 session_start();
+
 try {
     $action = isset($_GET["a"]) ? $_GET["a"] : "home";
-    if (isset($_SESSION['user'])) {
+    if (isset($_SESSION[USER_SESSION])) {
         $squelette = "views/layout.php";
-        $controller = "controllers/UserController.php";
+        $controller = "controllers/" . $_SESSION[USER_SESSION]->status . "Controller.php";
     }
     include($controller);
-
 } catch (Exception $e) {
     var_dump($e->getMessage()); // Only debug
 }

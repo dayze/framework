@@ -23,7 +23,7 @@ switch ($action) {
         $ajax = new Ajax();
         $userSE = new UserService();
         try {
-            $userSE->create($_POST['login'], $_POST['password'],$_POST['name'] , $_POST['lastName'], $_POST['email']);
+            $userSE->create($_POST['login'], $_POST['password'],$_POST['name'] , $_POST['lastName'], $_POST['email'], USER);
         } catch (Exception $e) {
             $ajax->isSuccess = false;
             throw new Exception($e->getMessage());

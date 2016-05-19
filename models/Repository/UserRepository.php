@@ -35,7 +35,7 @@ class UserRepository
 
     }
 
-    public function save($login, $password, $name, $lastName, $email, $id = null)
+    public function save($login, $password, $name, $lastName, $email, $status, $id = null)
     {
         if (is_null($id)) {
             try {
@@ -45,6 +45,7 @@ class UserRepository
                 $user->setName($name);
                 $user->setLastName($lastName);
                 $user->setEmail($email);
+                $user->setStatus($status);
                 $this->em->persist($user);
                 $this->em->flush();
                 $this->em->close();
@@ -73,6 +74,10 @@ class UserRepository
             if (!is_null($email)) {
                 $qb->set('u.email', ':email')
                     ->setParameter(':email', $email);
+            }
+            if (!is_null($status)) {
+                $qb->set('u.status', ':status')
+                    ->setParameter(':status', $status);
             }
             $qb->where('u.id = :id')
                 ->setParameter('id', $id);
