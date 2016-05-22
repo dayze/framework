@@ -1,2 +1,3 @@
 .idea
 cli.php
+config/config_database.php
