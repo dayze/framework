@@ -17,7 +17,7 @@ class UserRepository
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select('u')
-            ->from('User', 'u')
+            ->from('user', 'u')
             ->where('1=1');
         if (!is_null($byId)) {
             $qb->andWhere('u.id = :id')
@@ -54,7 +54,7 @@ class UserRepository
             }
         } else {
             $qb = $this->em->createQueryBuilder();
-            $qb->update('User', 'u');
+            $qb->update('user', 'u');
             if (!is_null($login)) {
                 $qb->set('u.login', ':login')
                     ->setParameter(':login', $login);
@@ -90,7 +90,7 @@ class UserRepository
     {
         $qb = $this->em->createQueryBuilder();
         try {
-            $qb->delete('User', 'u')
+            $qb->delete('user', 'u')
                 ->where('u.id = :id')
                 ->setParameter('id', $id)
                 ->getQuery()->getResult();
