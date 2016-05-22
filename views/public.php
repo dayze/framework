@@ -18,7 +18,7 @@
     <script type="text/javascript" src="vendor/public/js/jquery-2.1.4.js"></script>
     <script type="text/javascript" src="vendor/public/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="vendor/public/js/sweet-alert.js"></script>
-    <script type="text/javascript" src="vendor/public/js/Controller/ControllerPublic.js"></script>
+    <script type="text/javascript" src="vendor/public/js/Controller/controllerPublic.js"></script>
 </head>
 
 <body>
