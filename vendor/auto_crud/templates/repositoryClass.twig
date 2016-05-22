@@ -1,0 +1,76 @@
+<?php
+
+class {{ class }}Repository
+{
+    private $em;
+
+    public function __construct()
+    {
+        $this->em = getEntityManager();
+    }
+
+    /************************************
+    * LSD
+    ************************************/
+
+    public function load($byId = null)
+    {
+        $qb = $this->em->createQueryBuilder();
+        $qb->select('u')
+            ->from('{{ class|lower }}', 'u')
+            ->where('1=1');
+        if (!is_null($byId)) {
+            $qb->andWhere('u.id = :id')
+            ->setParameter('id', $byId);
+        }
+        return $qb->getQuery()->getResult();
+    }
+
+    public function save({% for property in properties %}${{ property }}, {% endfor %}$id = null)
+    {
+        if (is_null($id)) {
+        try {
+            ${{ class|lower }} = new {{ class }}();
+            {% for property in properties %}
+            ${{ class|lower }}->set{{ property|capitalize }}(${{ property }});
+            {% endfor %}
+            $this->em->persist(${{ class|lower }});
+            $this->em->flush();
+            $this->em->close();
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+        } else {
+            $qb = $this->em->createQueryBuilder();
+            $qb->update('{{ class|lower }}', 'u');
+        {% for property in properties %}
+            if(!is_null(${{ property }})){
+            $qb->set('u.{{ property }}', ':{{ property }}')
+                ->setParameter(':{{ property }}', ${{ property }});
+            }
+        {% endfor %}
+            $qb->where('u.id = :id')
+            ->setParameter('id', $id);
+            $qb->getQuery()->getResult();
+        }
+        return true;
+    }
+
+    public function delete($id)
+    {
+        $qb = $this->em->createQueryBuilder();
+        try {
+            $qb->delete('{{ class|lower }}', 'u')
+                ->where('u.id = :id')
+                ->setParameter('id', $id)
+                ->getQuery()->getResult();
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+        return true;
+    }
+
+/************************************
+* OTHER
+************************************/
+}

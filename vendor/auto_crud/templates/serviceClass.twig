@@ -1,0 +1,39 @@
+{#@formatter:off#}
+<?php
+    Class {{ class }}Service
+{
+    private ${{ class|lower }}Repository;
+
+    public function __construct()
+    {
+        $this->{{ class|lower }}Repository = new {{ class|lower }}Repository();
+    }
+
+    /*******************************
+    * CRUD
+    *******************************/
+    public function create({% for property in properties %}{% if loop.last %}${{ property}}{% else %}${{ property}}, {% endif %}{% endfor %})
+    {
+    return $this->{{ class|lower }}Repository->save({% for property in properties %}{% if loop.last %}${{ property}}{% else %}${{ property}}, {% endif %}{% endfor %});
+    }
+
+    public function read($byId = null)
+    {
+    return $this->{{ class|lower }}Repository->load($byId);
+    }
+
+    public function update($id, {% for property in properties %}{% if loop.last %}${{ property}}{% else %}${{ property}}, {% endif %}{% endfor %})
+    {
+    return $this->userRepository->save({% for property in properties %}${{ property}}, {% endfor %}$id);
+    }
+
+    public function delete($id)
+    {
+    return $this->{{ class|lower }}Repository->delete($id);
+    }
+
+    /*******************************
+    * OTHER
+    *******************************/
+
+    }
