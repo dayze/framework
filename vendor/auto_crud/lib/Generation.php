@@ -8,7 +8,15 @@ class Generation
     private $stopScript = false;
     private $twig;
 
-    public function __construct()
+    public function __construct($withEntity = null)
+    {
+        if (!is_null($withEntity))
+            $this->launchScriptWithEntity($withEntity);
+        else
+            $this->launchScriptWithoutEntity();
+    }
+
+    private function launchScriptWithoutEntity()
     {
         $twig = new Twig(AUTO_CRUD_TEMPLATE_PATH);
         $this->twig = $twig->getTwig();
@@ -30,6 +38,11 @@ class Generation
         }
         $this->createServiceClass();
         $this->createRepositoryClass();
+    }
+
+    private function launchScriptWithEntity($withEntity)
+    {
+        
     }
 
     private function createServiceClass()
