@@ -13,7 +13,7 @@ class {{ class }}Repository
     * LSD
     ************************************/
 
-    public function load($byId = null)
+    public function load($byId, $byLimit)
     {
         $qb = $this->em->createQueryBuilder();
         $qb->select('u')
@@ -23,6 +23,9 @@ class {{ class }}Repository
             $qb->andWhere('u.id = :id')
             ->setParameter('id', $byId);
         }
+        if(!is_null($byLimit))
+            $qb->setMaxResults($byLimit);
+
         return $qb->getQuery()->getResult();
     }
 

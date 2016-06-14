@@ -17,9 +17,9 @@
     return $this->{{ class|lower }}Repository->save({% for property in properties %}{% if loop.last %}${{ property}}{% else %}${{ property}}, {% endif %}{% endfor %});
     }
 
-    public function read($byId = null)
+    public function read($byId = null, $byLimit = null)
     {
-    return $this->{{ class|lower }}Repository->load($byId);
+    return $this->{{ class|lower }}Repository->load($byId, $byLimit);
     }
 
     public function update($id, {% for property in properties %}{% if loop.last %}${{ property}}{% else %}${{ property}}, {% endif %}{% endfor %})
