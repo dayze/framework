@@ -1,0 +1,19 @@
+{
+  "name": "framework",
+  "homepage": "https://github.com/dayze/framework",
+  "authors": [
+    "Maxime Laine"
+  ],
+  "description": "Personnal framework",
+  "main": "",
+  "license": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/bower",
+    "test",
+    "tests"
+  ]
+}
