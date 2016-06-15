@@ -10,14 +10,13 @@
 
         <title>layout</title>
 
-        <link href="vendor/public/css/bootstrap.min.css" rel="stylesheet">
-        <link href="vendor/public/css/font-awesome.css" rel="stylesheet">
-        <link href="vendor/public/css/datepicker.css" rel="stylesheet">
-        <link rel="stylesheet" href="vendor/public/css/sweet-alert.css">
-        <script src="vendor/public/js/jquery-2.1.4.js"></script>
-        <script src="vendor/public/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="vendor/public/js/sweet-alert.js"></script>
-        <script src="vendor/public/js/datepicker.js"></script>
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="vendor/bower/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="vendor/bower/bootstrap/dist/css/bootstrap.min.css.map">
+        <link rel="stylesheet" href="vendor/bower/font-awesome/css/font-awesome.min.css">
+        <!-- Javascript -->
+        <script type="text/javascript" src="vendor/bower/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="vendor/bower/bootstrap/dist/js/bootstrap.min.js"></script>
     </head>
 
     <body>
